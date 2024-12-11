@@ -3,7 +3,46 @@ body {
     color: #343a40;
     font-family: 'Arial', sans-serif;
 }
+
 .container {
     margin-top: 50px;
     text-align: center;
+}
+
+#output {
+    margin-top: 20px;
+    font-size: 1.2em;
+}
+
+/* ボタンを縦に並べるため */
+.buttons-container {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    gap: 15px; 
+}
+
+#sendButton1 {
+    background-color: #007bff; 
+    color: white;
+    border: none; 
+}
+
+#sendButton2 {
+    background-color: #28a745; 
+    color: white; 
+    border: none; 
+}
+
+#sendButton1:hover {
+    background-color: #0056b3; 
+}
+
+#sendButton2:hover {
+    background-color: #218838; 
+}
+
+#status {
+    margin-top: 20px;
+    font-size: 1.2em;
 }
