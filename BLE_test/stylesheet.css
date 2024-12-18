@@ -1,7 +1,12 @@
 body {
-    background-color: #f8f9fa;
-    color: #343a40;
-    font-family: 'Arial', sans-serif;
+  background: linear-gradient(to right,#5433FF,#20BDFF,#A5FECB,#5433FF) 0 / 200%;
+    height: 80px;
+    animation: 5s example4 linear infinite;
+  color: #343a40;
+  font-family: 'Arial', sans-serif;
+}
+@keyframes example4{
+  100% { background-position: 200%; }
 }
 
 .container {
