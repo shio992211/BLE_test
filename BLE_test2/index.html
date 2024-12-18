@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESP32 Bluetooth 接続テスト</title>
+    <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+                background-color: #f8f9fa;
+                color: #343a40;
+                font-family: 'Arial', sans-serif;
+            }
+
+            .container {
+                margin-top: 50px;
+                text-align: center;
+            }
+
+            #output {
+                margin-top: 20px;
+                font-size: 1.2em;
+            }
+
+            button {
+                width: 200px;  /* ボタンの幅を一定に */
+                height: 60px;  /* ボタンの高さを一定に */
+                font-size: 18px;  /* フォントサイズ */
+            }
+
+            /* ボタンを縦に並べるため */
+            .buttons-container {
+                display: flex;
+                flex-direction: column; 
+                align-items: center; 
+                gap: 15px; 
+            }
+
+            #sendButton1 {
+                background-color: #007bff; 
+                color: white;
+                border: none; 
+            }
+
+            #sendButton2 {
+                background-color: #28a745; 
+                color: white; 
+                border: none; 
+            }
+
+            #sendButton1:hover {
+                background-color: #0056b3; 
+            }
+
+            #sendButton2:hover {
+                background-color: #218838; 
+            }
+
+            #status {
+                margin-top: 20px;
+                font-size: 1.2em;
+            }
+
+    </style>
+</head>
+<body>
+    <!-- 接続画面 -->
+    <div id="connectPage" class="container">
+        <h1 class="mb-4">ESP32 Bluetooth 接続テスト <Ver class="2"></Ver></h1>
+        <button id="connectButton" class="btn btn-primary btn-lg">接続する</button>
+        <div id="output" class="alert alert-info mt-4" style="display: none;">Waiting for connection...</div>
+    </div>
+
+    <!-- 操作画面 -->
+    <div id="controlPage" class="container" style="display: none;">
+        <h1 class="mb-4">ドアの開閉</h1>
+        <div class="buttons-container">
+            <button id="sendButton1" class="btn btn-success btn-lg mb-3">OPEN</button>
+            <button id="sendButton2" class="btn btn-warning btn-lg">CLOSE</button>
+        </div>
+        <div id="status" class="alert alert-success mt-4">Connected. Ready to send data.</div>
+    </div>
+
+    <script>
+        let characteristic;
+
+        document.getElementById('connectButton').addEventListener('click', async () => {
+            const outputDiv = document.getElementById('output');
+            try {
+                outputDiv.style.display = 'block';
+                outputDiv.textContent = 'デバイスを検出中...';
+
+                const device = await navigator.bluetooth.requestDevice({
+                    filters: [{
+                        namePrefix: 'ESP32'  // 名前が「ESP32」で始まるデバイスのみ選択
+                    }],
+                    optionalServices: ['12345678-1234-5678-1234-56789abcdef0'] // 特定のサービスUUIDを指定
+                });
+
+                outputDiv.textContent = `Connecting to ${device.name}...`;
+                const server = await device.gatt.connect();
+                const service = await server.getPrimaryService('12345678-1234-5678-1234-56789abcdef0');
+                characteristic = await service.getCharacteristic('abcdef01-1234-5678-1234-56789abcdef0');
+
+                //接続成功したら画面遷移
+                document.getElementById('connectPage').style.display = 'none';
+                document.getElementById('controlPage').style.display = 'block';
+            } catch (error) {
+                console.error(error);
+                outputDiv.className = 'alert alert-danger';
+                outputDiv.textContent = 'Bluetoothの接続に失敗しました: ' + error.message;
+            }
+        });
+
+        //ボタン1で「1」を送信（OPEN）
+        document.getElementById('sendButton1').addEventListener('click', async () => {
+            try {
+                const encoder = new TextEncoder('utf-8');
+                const data = encoder.encode('1'); //"1"を送信
+                await characteristic.writeValue(data);
+                alert('鍵を開錠しました');
+            } catch (error) {
+                console.error(error);
+                alert('通信に失敗しました: ' + error.message);
+            }
+        });
+
+        //ボタン2で「2」を送信（CLOSE）
+        document.getElementById('sendButton2').addEventListener('click', async () => {
+            try {
+                const encoder = new TextEncoder('utf-8');
+                const data = encoder.encode('2'); //"2"を送信
+                await characteristic.writeValue(data);
+                alert('鍵を施錠しました');
+            } catch (error) {
+                console.error(error);
+                alert('通信に失敗しました: ' + error.message);
+            }
+        });
+
+    </script>
+</body>
+</html>
