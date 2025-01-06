@@ -38,23 +38,23 @@
             }
 
             #sendButton1 {
-                background-color: #007bff; 
+                background-color: #28a745; 
                 color: white;
                 border: none; 
             }
 
             #sendButton2 {
-                background-color: #28a745; 
+                background-color: #dc3545 ; 
                 color: white; 
                 border: none; 
             }
 
             #sendButton1:hover {
-                background-color: #0056b3; 
+                background-color: #19642a; 
             }
 
             #sendButton2:hover {
-                background-color: #218838; 
+                background-color: #8f222d; 
             }
 
             #status {
@@ -79,7 +79,7 @@
             <button id="sendButton1" class="btn btn-success btn-lg mb-3">OPEN</button>
             <button id="sendButton2" class="btn btn-warning btn-lg">CLOSE</button>
         </div>
-        <div id="status" class="alert alert-success mt-4">Connected. Ready to send data.</div>
+        <div id="status" class="alert alert-success mt-4">接続しました。</div>
     </div>
 
     <script>
@@ -98,7 +98,7 @@
                     optionalServices: ['12345678-1234-5678-1234-56789abcdef0'] // 特定のサービスUUIDを指定
                 });
 
-                outputDiv.textContent = `Connecting to ${device.name}...`;
+                outputDiv.textContent = `${device.name}と接続中`;
                 const server = await device.gatt.connect();
                 const service = await server.getPrimaryService('12345678-1234-5678-1234-56789abcdef0');
                 characteristic = await service.getCharacteristic('abcdef01-1234-5678-1234-56789abcdef0');
