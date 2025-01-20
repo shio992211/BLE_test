@@ -45,9 +45,9 @@ document.getElementById('sendButton1').addEventListener('click', async () => {
 document.getElementById('sendButton2').addEventListener('click', async () => {
     try {
         const encoder = new TextEncoder('utf-8');
-        const data = encoder.encode('2'); // "2"を送信
+        const data = encoder.encode('0'); // "2"を送信
         await characteristic.writeValue(data);
-        alert('データの送信に成功しました: 2');
+        alert('データの送信に成功しました: 0');
     } catch (error) {
         console.error(error);
         alert('通信に失敗しました: ' + error.message);
