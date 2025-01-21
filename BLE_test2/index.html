@@ -8,78 +8,96 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-                background-color: #f8f9fa;
-                color: #343a40;
-                font-family: 'Arial', sans-serif;
-                
-        }
+    background-color: #f8f9fa;
+    color: #343a40;
+    font-family: 'Arial', sans-serif;
+}
 
-        .container {
-            text-align: center;
-            padding-top: 2.6rem;
-        }
+.container {
+    text-align: center;
+    padding-top: 2.6rem;
+}
 
-        #output {
-            margin-top: 20px;
-            font-size: 1.2em;
-        }
+#output {
+    margin-top: 20px;
+    font-size: 1.2em;
+}
 
-        button {
-            width: 200px;  /* ボタンの幅を一定に */
-            height: 60px;  /* ボタンの高さを一定に */
-            font-size: 18px;  /* フォントサイズ */
-            margin: 1.5rem;
-        }
+button {
+    width: 200px;
+    height: 60px;
+    font-size: 18px;
+    margin: 1.5rem;
+}
 
-        /* ボタンを縦に並べるため */
-        .buttons-container {
-            display: flex;
-            flex-direction: column; 
-            align-items: center; 
-            gap: 15px; 
-        }
+.buttons-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
 
-        #sendButton1 {
-            background-color: #28a745; 
-            color: white;
-            border: none; 
-        }
+#status {
+    margin-top: 20px;
+    font-size: 1.2em;
+}
 
-        #sendButton2 {
-            background-color: #dc3545 ; 
-            color: white; 
-            border: none; 
-        }
+.main-container {
+    border-radius: 27px;
+}
 
-        #sendButton1:hover {
-            background-color: #19642a; 
-        }
+.btn {
+    height: 3.5rem;
+    border-radius: 27px;
+}
 
-        #sendButton2:hover {
-            background-color: #8f222d; 
-        }
+#connectButton {
+    background: rgb(0,82,212);
+    background: linear-gradient(90deg, rgba(0,82,212,1) 0%, rgba(67,100,247,1) 50%, rgba(111,177,252,1) 100%);
+}
 
-        #status {
-            margin-top: 20px;
-            font-size: 1.2em;
-        }
+#connectButton:hover {
+    background: rgb(34,37,95);
+    background: linear-gradient(90deg, rgba(34,37,95,1) 0%, rgba(24,87,124,1) 100%);
+}
 
-        /*Bootstrap設定*/
-        .main-container{
-        border-radius: 27px;
-        }
+#sendButton1 {
+    background: rgb(17,153,142);
+    background: linear-gradient(90deg, rgba(17,153,142,1) 0%, rgba(56,239,125,1) 100%);
+    color: white;
+    border: none;
+}
 
-        .btn{
-            height: 3.5rem;
-            border-radius: 27px;
-        }
-        .alert{
-            border-radius: 27px;
-        }
+#sendButton2 {
+    background: rgb(231,36,64);
+    background: linear-gradient(90deg, rgba(231,36,64,1) 46%, rgba(255,146,146,1) 100%);
+    color: white;
+    border: none;
+}
 
-        
-        
+#sendButton1:hover {
+    background: rgb(9,121,21);
+    background: linear-gradient(90deg, rgba(9,121,21,1) 35%, rgba(139,210,138,1) 100%);
+}
 
+#sendButton2:hover {
+    background: rgb(209,73,73);
+background: linear-gradient(90deg, rgba(209,73,73,1) 35%, rgba(227,166,166,1) 100%);
+}
+
+.alert {
+    border-radius: 27px;
+}
+
+.btn-no-border {
+    border: none;
+}
+
+.welcome{
+    text-align: center;
+    font-size: 1.25rem;
+    margin: 1rem;
+}
     </style>
 </head>
 <body>
