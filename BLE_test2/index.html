@@ -98,6 +98,20 @@ background: linear-gradient(90deg, rgba(209,73,73,1) 35%, rgba(227,166,166,1) 10
     font-size: 1.25rem;
     margin: 1rem;
 }
+        .alert-info {
+    background: linear-gradient(90deg, #86fde8 0%, #acb6e5 100%);
+    background-size: 200% 200%;
+    animation: gradationAnim 3s ease infinite;
+    color: white;
+    border: none;
+}
+@keyframes gradationAnim {
+    0% { background-position: 0% 50% }
+    50% { background-position: 100% 50% }
+    100% { background-position: 0% 50% }
+}
+
+
     </style>
 </head>
 <body>
