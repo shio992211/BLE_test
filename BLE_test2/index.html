@@ -127,7 +127,14 @@ background: linear-gradient(90deg, rgba(209,73,73,1) 35%, rgba(227,166,166,1) 10
         
             <!-- 操作画面 -->
      
-            <div id="controlPage" class="container" >
+
+                    <div id="connectPage" class="container">
+                        <h1 class="mb-4">接続画面<Ver class="2"></Ver></h1>
+                        <button id="connectButton" class="btn btn-primary btn-lg ">接続する</button>
+                        <div id="output" class="alert alert-info mt-4" style="display: none;">Waiting for connection...</div>
+                    </div>
+                    
+            <div id="controlPage" class="container" style="display: none;">
                 <h1 class="mb-4">操作画面</h1>
                 <div class="buttons-container">
                     <button id="sendButton1" class="btn btn-success btn-lg mb-3">OPEN</button>
